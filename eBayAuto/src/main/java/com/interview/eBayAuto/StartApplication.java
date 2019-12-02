@@ -30,7 +30,7 @@ public class StartApplication {
 		capabilities.setCapability("appActivity", "com.ebay.mobile.Activities.MainActivity");
 		driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		String v= s.getCellData(0,2,1);
+		String v= s.getCellData(0,3,1);
 		driver.findElement(By.id("com.ebay.mobile:id/search_box")).sendKeys(v);
 		Thread.sleep(10000);
 
