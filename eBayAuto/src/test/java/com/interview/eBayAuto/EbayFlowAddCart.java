@@ -25,32 +25,30 @@ public class EbayFlowAddCart extends BaseClass{
     AndroidDriver driver;
     
     boolean status=true;
+    
 
     @Test
-    public void SelectItems() throws InterruptedException, IOException
+    public void SelectItems() throws Exception
     {
         test=extent.createTest("Add product Test","Login and add product you cart");
         driver=DriverManager.getDriver();
-        welcomepage = new WelcomePage(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver),welcomepage);
+        WelcomePage wep=PageFactory.initElements(driver,WelcomePage.class);
         test.info("Opening app on device");
         test.info("Waiting for app to load device");
-        welcomepage.waitForAppToLoadLogo();
+        wep.waitForAppToLoadLogo();
         test.info("Clicking on Sign in Button");
-        welcomepage.ClickOnSignIn();
-       loginPage=new LoginPage(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver),loginPage);
+        wep.ClickOnSignIn();
+        LoginPage lp=PageFactory.initElements(driver,LoginPage.class);
         test.info("Performing login action");
-        loginPage.LoginInApp();
+        lp.LoginInApp();
         test.info("Login succesfull");
-        addProductToCart=new AddProductToCart(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver),addProductToCart);
+        AddProductToCart apc=PageFactory.initElements(driver,AddProductToCart.class);
         test.info("Clicking on Search box for product search");
-        addProductToCart.SearchBox();
+        apc.SearchBox();
         test.info("Searched Item in search box");
-        addProductToCart.SearchItemFromSearchBox();
+        apc.SearchItemFromSearchBox();
         test.info("Add product to cart");
-        addProductToCart.SelectProduct();
+        apc.SelectProduct();
         test.info("Product Added in Cart sucessfully");
     }
 

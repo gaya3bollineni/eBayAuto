@@ -26,7 +26,7 @@ public class DriverManager {
 
 
     public static AndroidDriver getDriver() throws IOException {
-        input = new FileInputStream("property/android.properties");
+        input = new FileInputStream("property/config.properties");
         prop.load(input);
         if (prop.getProperty("platform").equalsIgnoreCase("android")) {
             logger.info("Device property found for Android ");

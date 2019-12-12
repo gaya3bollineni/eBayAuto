@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class StartApplication {
@@ -21,7 +22,7 @@ public class StartApplication {
 
 	public static void main(String[] args) throws MalformedURLException, InterruptedException 
 	{
-
+	
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "device");
 		capabilities.setCapability("platformVersion", "5.1");
@@ -32,7 +33,7 @@ public class StartApplication {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String v= s.getCellData(0,3,1);
 		driver.findElement(By.id("com.ebay.mobile:id/search_box")).sendKeys(v);
-		Thread.sleep(10000);
+		WebDriverWait wait = new WebDriverWait(driver,20);
 
 
 	}

@@ -4,8 +4,10 @@ import com.interview.eBay.Config.ScrollElement;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,6 +25,9 @@ public class WelcomePage {
 
     @AndroidFindBy(id="com.ebay.mobile:id/textview_deals")
     public  WebElement FeaturedDeals;
+    
+    @AndroidFindBy(id="com.ebay.mobile:id/ebay")
+    public WebElement ebaytext;
 
 
     public void waitForAppToLoadLogo()
@@ -31,10 +36,12 @@ public class WelcomePage {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(FeaturedDeals));
         try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
+        	 
+        	 wait.until(ExpectedConditions.textToBePresentInElement(ebaytext,"ebay"));
+        } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
+       Assert.assertEquals(ebaytext,"ebay");
         logger.info("App to loaded successfully");
 
     }
@@ -43,9 +50,10 @@ public class WelcomePage {
     {
         logger.info("Click on Sign in button");
         try {
+        	 WebDriverWait wait = new WebDriverWait(driver, 30);
             SignInWelcomePage.click();
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
+            
+        } catch (Exception e) {
             e.printStackTrace();
         }
         logger.info("Clicked on Sign in button");
