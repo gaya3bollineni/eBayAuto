@@ -5,5 +5,10 @@
     <classes>
       <class name="eBayAuto.eBayflowaddCart"/>
     </classes>
-  </test> <!-- Test -->
+  </test> 
+  <test name="Suite1>
+  <classes>
+  <class name="eBayAuto.eBayflow"/>
+  </classes>
+  </test><!-- Test -->
 </suite> <!-- Suite -->
